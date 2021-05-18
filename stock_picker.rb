@@ -1,15 +1,18 @@
 require 'pry'
 
-binding.pry
 stocks = [17,3,6,9,15,8,6,1,10]
 def stock_picker(stocks)
-    profit = 0
-    stocks.each_with_index {|buy , index1|
-    stocks.each_with_index {|sell , index2|
-    sell - buy > profit ? profit = buy - sell : profit #checks if new purchase scheme has higher profit than previous, if so changes profit to next scheme
+    pick = {
+        "profit" => 0,
+        "sell" => [0],
+        "buy" => [0],
     }
+    stocks.each_with_index {|buy, index1|
+    stocks.slice(index1, stocks.length-1).map {|sell|
+    pick["profit"] < sell - buy ? pick = {"sell" =>sell, "buy" =>buy, "profit" => sell - buy} : pick
+    }
+    puts pick
 }
-
 end
 
-puts stock_picker(stocks)
+stock_picker(stocks)
