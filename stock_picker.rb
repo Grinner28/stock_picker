@@ -2,13 +2,13 @@ require 'pry'
 
 stocks = [17,3,6,9,15,8,6,1,10]
 def stock_picker(stocks)
-    pick = {
+    pick = { #Hash used to store details of the best pick determined so far
         "profit" => 0,
         "sell" => [0],
         "buy" => [0],
     }
     stocks.each_with_index {|buy, index1|
-    stocks.slice(index1, stocks.length-1).map {|sell|
+    stocks.slice(index1, stocks.length-1).map {|sell| #Cuts the stocksarray so the first value is omitted as a sell price
     pick["profit"] < sell - buy ? pick = {"sell" =>stocks.index(sell), "buy" =>stocks.index(buy), "profit" => sell - buy} : pick
     }
         }    
