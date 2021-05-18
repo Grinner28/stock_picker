@@ -9,10 +9,10 @@ def stock_picker(stocks)
     }
     stocks.each_with_index {|buy, index1|
     stocks.slice(index1, stocks.length-1).map {|sell|
-    pick["profit"] < sell - buy ? pick = {"sell" =>sell, "buy" =>buy, "profit" => sell - buy} : pick
+    pick["profit"] < sell - buy ? pick = {"sell" =>stocks.index(sell), "buy" =>stocks.index(buy), "profit" => sell - buy} : pick
     }
-    puts pick
-}
+        }    
+puts "The best stock pick is to buy at #{[pick["buy"]]} and sell at #{[pick["sell"]]} for a profit of #{pick["profit"]} " 
 end
 
 stock_picker(stocks)
