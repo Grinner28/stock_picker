@@ -9,11 +9,8 @@ def stock_picker(stocks)
     }
     stocks.each_with_index {|buy, index1|
     stocks.slice(index1, stocks.length-1).map {|sell| #Cuts the stocksarray so the first value is omitted as a sell price
-    pick["profit"] < sell - buy ? 
-    pick = {"sell" =>(stocks.slice(index1, stocks.length-1).index(sell))+index1, 
-    "buy" =>stocks.index(buy), "profit" => sell - buy} 
-    : pick
-    } ## Comparies profit of the current pair to the profit of the maximum deteced so far and if greated stores the new profit value and sell and buy indexes. 
+    pick["profit"] < sell - buy ? pick = {"sell" =>(stocks.slice(index1, stocks.length-1).index(sell))+index1, "buy" =>stocks.index(buy), "profit" => sell - buy} : pick
+    } 
         }    
 puts "The best stock pick is to buy at #{[pick["buy"]]} and sell at #{[pick["sell"]]} for a profit of #{pick["profit"]} " 
 end
